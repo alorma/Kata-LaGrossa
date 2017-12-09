@@ -1,5 +1,6 @@
 package com.alorma.grossa
 
+import junit.framework.Assert.assertFalse
 import junit.framework.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
@@ -54,6 +55,41 @@ class GrossaContestTest {
         val isPrize = contest.isPrize(Ticket("99181"))
 
         assertTrue(isPrize)
+    }
+
+    @Test
+    fun trueWhenTicketIsPrized5Last3Digits() {
+        val isPrize = contest.isPrize(Ticket("00181"))
+
+        assertTrue(isPrize)
+    }
+
+    @Test
+    fun trueWhenTicketIsPrized2First3Digits() {
+        val isPrize = contest.isPrize(Ticket("33219"))
+
+        assertTrue(isPrize)
+    }
+
+    @Test
+    fun trueWhenTicketIsPrizedWithPrevious() {
+        val isPrize = contest.isPrize(Ticket("99180"))
+
+        assertTrue(isPrize)
+    }
+
+    @Test
+    fun trueWhenTicketIsPrizedWithLater() {
+        val isPrize = contest.isPrize(Ticket("99182"))
+
+        assertTrue(isPrize)
+    }
+
+    @Test
+    fun falseWhenTicketIsNotPrized() {
+        val isPrize = contest.isPrize(Ticket("11121"))
+
+        assertFalse(isPrize)
     }
 
 }

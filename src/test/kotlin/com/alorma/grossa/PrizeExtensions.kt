@@ -1,7 +1,5 @@
 package com.alorma.grossa
 
-
-
 fun getPrize1(): Prize {
     val items = mutableListOf<PrizeItem>()
 
@@ -73,6 +71,36 @@ fun getPrize5(): Prize {
     items.add(PrizeItem("11200", 5))
     items.add(PrizeItem("00088", 1))
     items.add(PrizeItem("00008"))
+
+    return Prize(items)
+}
+
+fun getMultiplePrize1(): Prize {
+    val items = mutableListOf<PrizeItem>()
+
+    items.add(PrizeItem("55141", 20000))
+    items.add(PrizeItem("55140", 200))
+    items.add(PrizeItem("55142", 200))
+    items.add(PrizeItem("05141", 100))
+    items.add(PrizeItem("00141", 35))
+    items.add(PrizeItem("55100", 5))
+    items.add(PrizeItem("00041", 5))
+    items.add(PrizeItem("00001", 1))
+
+    return Prize(items)
+}
+
+fun getMultiplePrize2(): Prize {
+    val items = mutableListOf<PrizeItem>()
+
+    items.add(PrizeItem("27141", 6500))
+    items.add(PrizeItem("27140", 65))
+    items.add(PrizeItem("27142", 65))
+    items.add(PrizeItem("07141", 30))
+    items.add(PrizeItem("00141", 20))
+    items.add(PrizeItem("27100", 5))
+    items.add(PrizeItem("00041", 2))
+    items.add(PrizeItem("00001"))
 
     return Prize(items)
 }

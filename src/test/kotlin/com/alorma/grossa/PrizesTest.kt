@@ -7,25 +7,7 @@ import org.junit.Test
 
 class PrizesTest {
 
-    private lateinit var prize: Prize
-
-    @Before
-    fun setup() {
-        val items = mutableListOf<PrizeItem>()
-        items.add(PrizeItem("11213", 0))
-        items.add(PrizeItem("11212", 0))
-        items.add(PrizeItem("11214", 0))
-        items.add(PrizeItem("911", 0))
-        items.add(PrizeItem("363", 0))
-        items.add(PrizeItem("35", 0))
-        items.add(PrizeItem("01212", 0))
-        items.add(PrizeItem("01214", 0))
-        items.add(PrizeItem("06646", 0))
-        items.add(PrizeItem("4", 0))
-        items.add(PrizeItem("4875", 0))
-
-        prize = Prize(items)
-    }
+    private val prize = Prize.create("11213")
 
     @Test
     fun trueWhenIs5DigitsPrize() {
@@ -57,35 +39,28 @@ class PrizesTest {
 
     @Test
     fun trueWhenIs4LastDigitsPrize() {
-        val check = prize.check("14875")
+        val check = prize.check("1213")
 
         assertTrue(check)
     }
 
     @Test
     fun trueWhenIs3LastDigitsPrize() {
-        val check = prize.check("77363")
+        val check = prize.check("213")
 
         assertTrue(check)
     }
 
     @Test
     fun trueWhenIs2LastDigitsPrize() {
-        val check = prize.check("52535")
+        val check = prize.check("13")
 
         assertTrue(check)
     }
 
     @Test
     fun trueWhenIs1LastDigitsPrize() {
-        val check = prize.check("42424")
-
-        assertTrue(check)
-    }
-
-    @Test
-    fun trueWhenIs3FirstDigitsPrize() {
-        val check = prize.check("91141")
+        val check = prize.check("3")
 
         assertTrue(check)
     }

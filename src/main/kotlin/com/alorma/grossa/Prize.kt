@@ -17,12 +17,12 @@ class Prize(numbers: List<PrizeItem>) {
             prizes.add(PrizeItem(plus.normalize(), 0))
             prizes.add(PrizeItem(minus.normalize(), 0))
 
-            prizes.add(PrizeItem(number.takeFrom(1), 0))
-            prizes.add(PrizeItem(number.takeFrom(2), 0))
-            prizes.add(PrizeItem(number.takeFrom(3), 0))
-            prizes.add(PrizeItem(number.takeFrom(4), 0))
+            prizes.add(PrizeItem(number.takeFrom(1).normalize(), 0))
+            prizes.add(PrizeItem(number.takeFrom(2).normalize(), 0))
+            prizes.add(PrizeItem(number.takeFrom(3).normalize(), 0))
+            prizes.add(PrizeItem(number.takeFrom(4).normalize(), 0))
 
-            prizes.add(PrizeItem(number.first(3), 0))
+            prizes.add(PrizeItem(number.first(3).inverseNormalize(), 0))
 
             return prizes
         }
@@ -31,16 +31,16 @@ class Prize(numbers: List<PrizeItem>) {
     private val items: List<PrizeItem> = numbers
 
     fun check(ticketNumber: String): Boolean {
-        val ticketNumbers = generateTicketNumbers(ticketNumber)
+        val ticketNumbers = generateTicketNumbers(ticketNumber.normalize())
 
         return ticketNumbers.any {
-            items.any { prizeItem -> prizeItem.number.contentEquals(it) }
+            return@any items.any { prizeItem -> prizeItem.number.contentEquals(it) }
         }
     }
 
     fun prizeItem(ticketNumber: String): PrizeItem? {
 
-        val ticketNumbers = generateTicketNumbers(ticketNumber)
+        val ticketNumbers = generateTicketNumbers(ticketNumber.normalize())
 
         ticketNumbers.firstOrNull {
             return items.firstOrNull { prizeItem -> prizeItem.number.contentEquals(it) }

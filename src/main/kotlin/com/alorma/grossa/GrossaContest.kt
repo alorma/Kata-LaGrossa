@@ -24,12 +24,14 @@ class GrossaContest(private val ticketValidator: TicketValidator,
             return 0
         }
 
-        val prizeItemAmount = prizes
-                .firstOrNull { it.check(ticket.number) }
-                ?.prizeItem(ticket.number)
-                ?.amount ?: 0
-
-        return prizeItemAmount * ticket.amount
+        var total = 0
+        prizes.forEach {
+            if (it.check(ticket.number)) {
+                val prizeAmount = it.prizeItem(ticket.number)?.amount ?: 0
+                total += prizeAmount * ticket.amount
+            }
+        }
+        return total
     }
 
 }

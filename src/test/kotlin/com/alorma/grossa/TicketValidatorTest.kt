@@ -5,46 +5,46 @@ import junit.framework.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
 
-class GrossaContestTest {
+class TicketValidatorTest {
 
-    private lateinit var contest: GrossaContest
+    private lateinit var ticketValidator: TicketValidator
 
     @Before
     fun setup() {
-        contest = GrossaContest(TicketValidator())
+        ticketValidator = TicketValidator()
     }
 
     @Test
     fun falseWhenTicketIsNull() {
-        val valid = contest.isValid(null)
+        val valid = ticketValidator.isValid(null)
 
         assertFalse(valid)
     }
 
     @Test
     fun falseWhenTicketNumberIsEmpty() {
-        val valid = contest.isValid(Ticket(""))
+        val valid = ticketValidator.isValid(Ticket(""))
 
         assertFalse(valid)
     }
 
     @Test
     fun falseWhenTicketNumberIsLessThan5Chars() {
-        val valid = contest.isValid(Ticket("101"))
+        val valid = ticketValidator.isValid(Ticket("101"))
 
         assertFalse(valid)
     }
 
     @Test
     fun trueWhenTicketNumberIsExactlyThan5Chars() {
-        val valid = contest.isValid(Ticket("10112"))
+        val valid = ticketValidator.isValid(Ticket("10112"))
 
         assertTrue(valid)
     }
 
     @Test
     fun falseWhenTicketNumberIsLongerThan5Chars() {
-        val valid = contest.isValid(Ticket("10112112"))
+        val valid = ticketValidator.isValid(Ticket("10112112"))
 
         assertFalse(valid)
     }

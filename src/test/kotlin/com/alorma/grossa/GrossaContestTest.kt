@@ -87,7 +87,7 @@ class GrossaContestTest {
 
     @Test
     fun falseWhenTicketIsNotPrized() {
-        val isPrize = contest.isPrize(Ticket("11121"))
+        val isPrize = contest.isPrize(Ticket("11129"))
 
         assertFalse(isPrize)
     }

@@ -27,15 +27,15 @@ class Prize(private val number: String) {
     }
 
     private fun checkLastDigits(number: String, ticketNumber: String, position: Int): Boolean {
-        val prize4Digits = number.substring(position until number.length)
-        val ticket4Digits = ticketNumber.substring(position until ticketNumber.length)
-        return prize4Digits.contentEquals(ticket4Digits)
+        val prizeDigits = number.substring(position until number.length)
+        val ticketDigits = ticketNumber.substring(position until ticketNumber.length)
+        return prizeDigits.contentEquals(ticketDigits)
     }
 
     private fun checkFirstDigits(number: String, ticketNumber: String, length: Int): Boolean {
-        val prize4Digits = number.substring(0 until length)
-        val ticket4Digits = ticketNumber.substring(0 until length)
-        return prize4Digits.contentEquals(ticket4Digits)
+        val prizeDigits = number.substring(0 until length)
+        val ticketDigits = ticketNumber.substring(0 until length)
+        return prizeDigits.contentEquals(ticketDigits)
     }
 
     private fun normalize(number: String): String {

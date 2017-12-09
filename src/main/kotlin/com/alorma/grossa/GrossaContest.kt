@@ -15,4 +15,8 @@ class GrossaContest(private val ticketValidator: TicketValidator,
         return prizes.any { it.check(ticket.number) }
     }
 
+    fun prize(ticket: Ticket): Prize? {
+        return prizes.firstOrNull { it.check(ticket.number) }
+    }
+
 }

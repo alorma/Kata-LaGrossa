@@ -8,7 +8,11 @@ class GrossaContest(private val ticketValidator: TicketValidator,
     }
 
     fun isPrize(ticket: Ticket): Boolean {
-        TODO()
+        if (!isValid(ticket)) {
+            return false
+        }
+
+        return prize.check(ticket.number)
     }
 
 }

@@ -6,11 +6,11 @@ import org.junit.Test
 
 class GrossaContestTest {
 
-    private val prize1 = Prize("11213")
-    private val prize2 = Prize("33242")
-    private val prize3 = Prize("00131")
-    private val prize4 = Prize("00180")
-    private val prize5 = Prize("99181")
+    private val prize1 = getPrize1()
+    private val prize2 = getPrize2()
+    private val prize3 = getPrize3()
+    private val prize4 = getPrize4()
+    private val prize5 = getPrize5()
 
     private val prizes = listOf(
             prize1,
@@ -29,63 +29,63 @@ class GrossaContestTest {
 
     @Test
     fun trueWhenTicketIsPrized1() {
-        val isPrize = contest.isPrize(Ticket("11213"))
+        val isPrize = contest.isPrize(Ticket("55141"))
 
         assertTrue(isPrize)
     }
 
     @Test
     fun trueWhenTicketIsPrized2() {
-        val isPrize = contest.isPrize(Ticket("33242"))
+        val isPrize = contest.isPrize(Ticket("33163"))
 
         assertTrue(isPrize)
     }
 
     @Test
     fun trueWhenTicketIsPrized3() {
-        val isPrize = contest.isPrize(Ticket("00131"))
+        val isPrize = contest.isPrize(Ticket("99900"))
 
         assertTrue(isPrize)
     }
 
     @Test
     fun trueWhenTicketIsPrized4() {
-        val isPrize = contest.isPrize(Ticket("00180"))
+        val isPrize = contest.isPrize(Ticket("75100"))
 
         assertTrue(isPrize)
     }
 
     @Test
     fun trueWhenTicketIsPrized5() {
-        val isPrize = contest.isPrize(Ticket("99181"))
+        val isPrize = contest.isPrize(Ticket("11289"))
 
         assertTrue(isPrize)
     }
 
     @Test
     fun trueWhenTicketIsPrized5Last3Digits() {
-        val isPrize = contest.isPrize(Ticket("00181"))
+        val isPrize = contest.isPrize(Ticket("00288"))
 
         assertTrue(isPrize)
     }
 
     @Test
     fun trueWhenTicketIsPrized2First3Digits() {
-        val isPrize = contest.isPrize(Ticket("33219"))
+        val isPrize = contest.isPrize(Ticket("33100"))
 
         assertTrue(isPrize)
     }
 
     @Test
     fun trueWhenTicketIsPrizedWithPrevious() {
-        val isPrize = contest.isPrize(Ticket("99180"))
+        val isPrize = contest.isPrize(Ticket("99995"))
 
         assertTrue(isPrize)
     }
 
     @Test
     fun trueWhenTicketIsPrizedWithLater() {
-        val isPrize = contest.isPrize(Ticket("99182"))
+        val isPrize = contest.isPrize(Ticket("99997"))
 
         assertTrue(isPrize)
     }
@@ -99,7 +99,7 @@ class GrossaContestTest {
 
     @Test
     fun prize1WhenTicketIsPrized() {
-        val prize = contest.prize(Ticket("11213"))
+        val prize = contest.prize(Ticket("00141"))
 
         assertEquals(prize1, prize)
     }
@@ -107,7 +107,7 @@ class GrossaContestTest {
 
     @Test
     fun prize3WhenTicketIsPrized() {
-        val prize = contest.prize(Ticket("00131"))
+        val prize = contest.prize(Ticket("99996"))
 
         assertEquals(prize3, prize)
     }

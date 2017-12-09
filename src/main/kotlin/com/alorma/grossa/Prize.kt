@@ -1,33 +1,25 @@
 package com.alorma.grossa
 
-class Prize {
+class Prize(numbers: List<PrizeItem>) {
 
-    private val items: List<PrizeItem>
+    private val items: List<PrizeItem> = numbers
 
-    constructor(number: String) {
-        items = generateNumbers(number)
-    }
-
-    constructor(numbers: List<PrizeItem>) {
-        this.items = numbers
-    }
-
-    private fun generateNumbers(number: String): List<PrizeItem> {
+    fun generateNumbers(number: String): List<PrizeItem> {
         val prizes = mutableListOf<PrizeItem>()
 
-        prizes.add(PrizeItem(number))
+        prizes.add(PrizeItem(number, 0))
 
         val plus = number.toInt().plus(1).toString()
         val minus = number.toInt().minus(1).toString()
-        prizes.add(PrizeItem(normalize(plus)))
-        prizes.add(PrizeItem(normalize(minus)))
+        prizes.add(PrizeItem(plus.normalize(), 0))
+        prizes.add(PrizeItem(minus.normalize(), 0))
 
-        prizes.add(PrizeItem(getLastDigits(number, 1)))
-        prizes.add(PrizeItem(getLastDigits(number, 2)))
-        prizes.add(PrizeItem(getLastDigits(number, 3)))
-        prizes.add(PrizeItem(getLastDigits(number, 4)))
+        prizes.add(PrizeItem(number.takeFrom(1), 0))
+        prizes.add(PrizeItem(number.takeFrom(2), 0))
+        prizes.add(PrizeItem(number.takeFrom(3), 0))
+        prizes.add(PrizeItem(number.takeFrom(4), 0))
 
-        prizes.add(PrizeItem(getFirstDigits(number, 3)))
+        prizes.add(PrizeItem(number.first(3), 0))
 
         return prizes
     }
@@ -41,12 +33,12 @@ class Prize {
         ticketNumbers.add(ticketNumber)
         ticketNumbers.add(ticketNumber)
 
-        ticketNumbers.add(getLastDigits(ticketNumber, 1))
-        ticketNumbers.add(getLastDigits(ticketNumber, 2))
-        ticketNumbers.add(getLastDigits(ticketNumber, 3))
-        ticketNumbers.add(getLastDigits(ticketNumber, 4))
+        ticketNumbers.add(ticketNumber.first(1))
+        ticketNumbers.add(ticketNumber.first(2))
+        ticketNumbers.add(ticketNumber.first(3))
+        ticketNumbers.add(ticketNumber.first(4))
 
-        ticketNumbers.add(getFirstDigits(ticketNumber, 3))
+        ticketNumbers.add(ticketNumber.takeFrom(3))
 
         ticketNumbers.forEach {
             items.filter { prizeItem -> prizeItem.number.contentEquals(it) }
@@ -54,24 +46,5 @@ class Prize {
         }
 
         return false
-    }
-
-    private fun getLastDigits(number: String, position: Int): String {
-        return number.substring(position until number.length)
-    }
-
-    private fun getFirstDigits(number: String, length: Int): String {
-        return number.substring(0 until length)
-    }
-
-    private fun normalize(number: String): String {
-        val diff = 5 - number.length
-        if (diff > 0) {
-            var text = number
-            (1..diff).forEach { text = "0$number" }
-
-            return text
-        }
-        return number
     }
 }

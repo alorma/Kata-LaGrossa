@@ -12,17 +12,17 @@ class PrizesTest {
     @Before
     fun setup() {
         val items = mutableListOf<PrizeItem>()
-        items.add(PrizeItem("11213"))
-        items.add(PrizeItem("11212"))
-        items.add(PrizeItem("11214"))
-        items.add(PrizeItem("911"))
-        items.add(PrizeItem("363"))
-        items.add(PrizeItem("35"))
-        items.add(PrizeItem("01212"))
-        items.add(PrizeItem("01214"))
-        items.add(PrizeItem("06646"))
-        items.add(PrizeItem("4"))
-        items.add(PrizeItem("4875"))
+        items.add(PrizeItem("11213", 0))
+        items.add(PrizeItem("11212", 0))
+        items.add(PrizeItem("11214", 0))
+        items.add(PrizeItem("911", 0))
+        items.add(PrizeItem("363", 0))
+        items.add(PrizeItem("35", 0))
+        items.add(PrizeItem("01212", 0))
+        items.add(PrizeItem("01214", 0))
+        items.add(PrizeItem("06646", 0))
+        items.add(PrizeItem("4", 0))
+        items.add(PrizeItem("4875", 0))
 
         prize = Prize(items)
     }

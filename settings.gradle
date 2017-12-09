@@ -1,0 +1,3 @@
+rootProject.name = 'kata-grossa'
+rootProject.buildFileName = 'build.gradle.kts'
+

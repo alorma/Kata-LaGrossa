@@ -1,41 +1,62 @@
 package com.alorma.grossa
 
-class Prize(private val number: String) {
+import java.lang.Math.min
+
+class Prize(number: String) {
+
+    private val numbers: List<PrizeItem>
+
+    init {
+        numbers = generateNumbers(number)
+    }
+
+    private fun generateNumbers(number: String): List<PrizeItem> {
+        val prizes = mutableListOf<PrizeItem>()
+
+        prizes.add(PrizeItem(number))
+
+        val plus = number.toInt().plus(1).toString()
+        val minus = number.toInt().minus(1).toString()
+        prizes.add(PrizeItem(normalize(plus)))
+        prizes.add(PrizeItem(normalize(minus)))
+
+        prizes.add(PrizeItem(getLastDigits(number, 1)))
+        prizes.add(PrizeItem(getLastDigits(number, 2)))
+        prizes.add(PrizeItem(getLastDigits(number, 3)))
+        prizes.add(PrizeItem(getLastDigits(number, 4)))
+
+        prizes.add(PrizeItem(getFirstDigits(number, 3)))
+
+        return prizes
+    }
 
     fun check(ticketNumber: String): Boolean {
-        if (number.contentEquals(ticketNumber)) {
-            return true
-        } else {
 
-            val plus = number.toInt().plus(1).toString()
-            val minus = number.toInt().minus(1).toString()
+        val ticketNumbers = mutableListOf<String>()
 
-            when {
-                normalize(plus).contentEquals(ticketNumber) -> return true
-                normalize(minus).contentEquals(ticketNumber) -> return true
-                else -> when {
-                    checkLastDigits(number, ticketNumber, 1) -> return true
-                    checkLastDigits(number, ticketNumber, 2) -> return true
-                    checkLastDigits(number, ticketNumber, 3) -> return true
-                    checkLastDigits(number, ticketNumber, 4) -> return true
-                    checkFirstDigits(number, ticketNumber, 3) -> return true
+        ticketNumbers.add(ticketNumber)
 
-                }
-            }
+        ticketNumbers.add(ticketNumber)
+        ticketNumbers.add(ticketNumber)
+
+        ticketNumbers.add(getLastDigits(ticketNumber, 1))
+        ticketNumbers.add(getLastDigits(ticketNumber, 2))
+        ticketNumbers.add(getLastDigits(ticketNumber, 3))
+        ticketNumbers.add(getLastDigits(ticketNumber, 4))
+
+        ticketNumbers.add(getFirstDigits(ticketNumber, 3))
+
+        return (0 until min(numbers.size, ticketNumbers.size)).any {
+            numbers[it].number.contentEquals(ticketNumbers[it])
         }
-        return false
     }
 
-    private fun checkLastDigits(number: String, ticketNumber: String, position: Int): Boolean {
-        val prizeDigits = number.substring(position until number.length)
-        val ticketDigits = ticketNumber.substring(position until ticketNumber.length)
-        return prizeDigits.contentEquals(ticketDigits)
+    private fun getLastDigits(number: String, position: Int): String {
+        return number.substring(position until number.length)
     }
 
-    private fun checkFirstDigits(number: String, ticketNumber: String, length: Int): Boolean {
-        val prizeDigits = number.substring(0 until length)
-        val ticketDigits = ticketNumber.substring(0 until length)
-        return prizeDigits.contentEquals(ticketDigits)
+    private fun getFirstDigits(number: String, length: Int): String {
+        return number.substring(0 until length)
     }
 
     private fun normalize(number: String): String {

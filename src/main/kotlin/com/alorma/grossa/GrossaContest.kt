@@ -1,10 +1,8 @@
 package com.alorma.grossa
 
-class GrossaContest {
+class GrossaContest(private val ticketValidator: TicketValidator) {
 
     fun isValid(ticket: Ticket?): Boolean {
-        return if (ticket == null) {
-            false
-        } else ticket.number.isNotEmpty() && ticket.number.length == 5
+        return ticketValidator.isValid(ticket)
     }
 }

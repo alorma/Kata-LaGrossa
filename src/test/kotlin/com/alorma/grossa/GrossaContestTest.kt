@@ -11,7 +11,7 @@ class GrossaContestTest {
 
     @Before
     fun setup() {
-        contest = GrossaContest()
+        contest = GrossaContest(TicketValidator())
     }
 
     @Test

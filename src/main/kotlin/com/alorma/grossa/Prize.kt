@@ -1,13 +1,15 @@
 package com.alorma.grossa
 
-import java.lang.Math.min
+class Prize {
 
-class Prize(number: String) {
+    private val items: List<PrizeItem>
 
-    private val numbers: List<PrizeItem>
+    constructor(number: String) {
+        items = generateNumbers(number)
+    }
 
-    init {
-        numbers = generateNumbers(number)
+    constructor(numbers: List<PrizeItem>) {
+        this.items = numbers
     }
 
     private fun generateNumbers(number: String): List<PrizeItem> {
@@ -46,9 +48,12 @@ class Prize(number: String) {
 
         ticketNumbers.add(getFirstDigits(ticketNumber, 3))
 
-        return (0 until min(numbers.size, ticketNumbers.size)).any {
-            numbers[it].number.contentEquals(ticketNumbers[it])
+        ticketNumbers.forEach {
+            items.filter { prizeItem -> prizeItem.number.contentEquals(it) }
+                    .forEach { return true }
         }
+
+        return false
     }
 
     private fun getLastDigits(number: String, position: Int): String {
